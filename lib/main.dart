@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Design(),
     );
@@ -29,7 +29,7 @@ class _DesignState extends State<Design> {
   int _activeIndex = 0;
 
   final _pages = [
-    Home(),
+    const Home()
   ];
 
   @override

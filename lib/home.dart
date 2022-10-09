@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:desigin2/play.dart';
 
 
 class Home extends StatefulWidget {
@@ -47,7 +48,7 @@ class _HomeState extends State<Home> {
             children: [
               Container(
                 padding: const EdgeInsets.only(left: 15.0),
-                child: const Text('あなたへのおすすめ',style: TextStyle(color: Colors.white, fontSize: 24)),
+                child: const Text('あなたへのおすすめ',style: TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.bold)),
               ),
               Container(
                 padding: const EdgeInsets.only(right: 20.0),
@@ -76,7 +77,14 @@ class _HomeState extends State<Home> {
                                   alignment: Alignment.topCenter,
                                   child: FittedBox(
                                     fit: BoxFit.contain,
-                                    child: Image.asset('images/aaaa.jpeg'),
+                                    child: GestureDetector(
+                                      child: Image.asset('images/aaaa.jpeg'),
+                                      onTap: (){
+                                        setState((){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => Play()));
+                                        });
+                                      },
+                                    )
                                   )
                               )
                           )
@@ -84,12 +92,12 @@ class _HomeState extends State<Home> {
                       const Positioned(
                           top: 154.0,
                           left: 10.0,
-                          child: Text('Cat', style: TextStyle(color: Colors.white))
+                          child: Text('Cat', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))
                       ),
                       Positioned(
                           top: 170.0,
                           left: 10.0,
-                          child:Text('CatSong', style: TextStyle(color: Colors.grey[400]))
+                          child:Text('CatSong', style: TextStyle(color: Colors.grey[400],fontWeight: FontWeight.bold))
                       )
                     ]
                 ),
@@ -118,12 +126,12 @@ class _HomeState extends State<Home> {
                       const Positioned(
                           top: 154.0,
                           left: 10.0,
-                          child: Text('Cat', style: TextStyle(color: Colors.white))
+                          child: Text('Cat', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))
                       ),
                       Positioned(
                           top: 170.0,
                           left: 10.0,
-                          child:Text('CatSong', style: TextStyle(color: Colors.grey[400]))
+                          child:Text('CatSong', style: TextStyle(color: Colors.grey[400],fontWeight: FontWeight.bold))
                       )
                     ]
                 ),
@@ -152,12 +160,12 @@ class _HomeState extends State<Home> {
                       const Positioned(
                           top: 154.0,
                           left: 10.0,
-                          child: Text('Cat', style: TextStyle(color: Colors.white))
+                          child: Text('Cat', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))
                       ),
                       Positioned(
                           top: 170.0,
                           left: 10.0,
-                          child:Text('CatSong', style: TextStyle(color: Colors.grey[400]))
+                          child:Text('CatSong', style: TextStyle(color: Colors.grey[400],fontWeight: FontWeight.bold))
                       )
                     ]
                 ),
@@ -170,7 +178,7 @@ class _HomeState extends State<Home> {
             children: [
               Container(
                 padding: const EdgeInsets.only(left: 15.0),
-                child: const Text('カテゴリー',style: TextStyle(color: Colors.white, fontSize: 24)),
+                child: const Text('カテゴリー',style: TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.bold)),
               ),
               Container(
                   padding: const EdgeInsets.only(right: 20.0),
@@ -179,35 +187,179 @@ class _HomeState extends State<Home> {
             ],
           ),
           const SizedBox(height: 20.0),
-          GridView.count(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              crossAxisCount: 3,
-              mainAxisSpacing: 5.0,
-              crossAxisSpacing: 5.0,
-              padding: const EdgeInsets.all(10.0),
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                  height: 120.0,
-                  width: 180.0,
-                  decoration:  BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      gradient:  LinearGradient(
-                        begin: FractionalOffset.topLeft,
-                        end: FractionalOffset.bottomRight,
-                        colors: [
-                          const Color(0xFF8E24AA),
-                          const Color(0xFF7B1FA2).withOpacity(0.6),
-                          const Color(0xFF6A1B9A).withOpacity(0.6),
-                          const Color(0xFF4A148C).withOpacity(0.6),
-                          const Color(0xFF212121).withOpacity(0.6),
-                        ],
-                      )
-                  ),
-                  child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
-                ),
-              ]
+          SizedBox( //SizedBoxでもContainerでも結果は変わりませんでした
+              height: 250,
+              width: _deviceWidth, //高さと同じように固定値でも試しましたが結果はかわりませんでした。
+              child:GridView.count(
+                  scrollDirection: Axis.horizontal,
+                  crossAxisCount: 4, //スクロールの有無を確認するために一列の要素数を増やしています
+                  childAspectRatio: (3 / 2),
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
+                  padding: const EdgeInsets.all(10.0),
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 120.0,
+                      width: 180.0,
+                      decoration:  BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          gradient:  LinearGradient(
+                            begin: FractionalOffset.topLeft,
+                            end: FractionalOffset.bottomRight,
+                            colors: [
+                              const Color(0xFF8E24AA),
+                              const Color(0xFF7B1FA2).withOpacity(0.6),
+                              const Color(0xFF6A1B9A).withOpacity(0.6),
+                              const Color(0xFF4A148C).withOpacity(0.6),
+                              const Color(0xFF212121).withOpacity(0.6),
+                            ],
+                          )
+                      ),
+                      child: const Text('クラシック',style: TextStyle(color: Colors.white, fontSize: 20.0),),
+                    ),
+                  ]
+              )
           )
         ],
       ),
